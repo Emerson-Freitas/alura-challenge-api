@@ -1,4 +1,4 @@
-package br.com.alura.challenge.model;
+package br.com.alura.challenge.model.video;
 
 import jakarta.validation.constraints.NotNull;
 
@@ -7,5 +7,6 @@ public record DadosAtualizadosVideo(
         Long id,
         String titulo,
         String descricao,
-        String url) {
+        String url,
+        Long categoriaId) {
 }

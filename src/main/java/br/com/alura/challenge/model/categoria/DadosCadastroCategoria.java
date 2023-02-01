@@ -1,15 +1,13 @@
-package br.com.alura.challenge.model;
+package br.com.alura.challenge.model.categoria;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record DadosCadastroVideo(
+public record DadosCadastroCategoria(
         @NotNull
         Long id,
         @NotBlank
         String titulo,
         @NotBlank
-        String descricao,
-        @NotBlank
-        String url) {
+        String cor) {
 }

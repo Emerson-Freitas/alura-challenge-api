@@ -1,9 +1,9 @@
 package br.com.alura.challenge.controller;
 
-import br.com.alura.challenge.model.DadosAtualizadosVideo;
-import br.com.alura.challenge.model.DadosCadastroVideo;
-import br.com.alura.challenge.model.DadosVideo;
-import br.com.alura.challenge.model.VideoModel;
+import br.com.alura.challenge.model.video.DadosAtualizadosVideo;
+import br.com.alura.challenge.model.video.DadosCadastroVideo;
+import br.com.alura.challenge.model.video.DadosVideo;
+import br.com.alura.challenge.model.video.VideoModel;
 import br.com.alura.challenge.repository.VideoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +47,7 @@ public class VideoController {
     public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizadosVideo dadosAtualizadosVideo){
         var video = videoRepository.getReferenceById(dadosAtualizadosVideo.id());
         video.atualizarDados(dadosAtualizadosVideo);
+        videoRepository.save(video);
         return ResponseEntity.ok(new DadosVideo(video));
     }
 

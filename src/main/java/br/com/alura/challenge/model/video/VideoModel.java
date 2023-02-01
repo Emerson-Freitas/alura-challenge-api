@@ -1,7 +1,7 @@
-package br.com.alura.challenge.model;
+package br.com.alura.challenge.model.video;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -24,6 +24,9 @@ public class VideoModel {
 
     private String descricao;
 
+    @Column(name="categoria_id")
+    private Long categoriaId;
+
     private String url;
 
     public VideoModel(DadosCadastroVideo dadosCadastroVideo) {
@@ -31,6 +34,11 @@ public class VideoModel {
         this.titulo = dadosCadastroVideo.titulo();
         this.descricao = dadosCadastroVideo.descricao();
         this.url = dadosCadastroVideo.url();
+        if(dadosCadastroVideo.categoriaId() == null){
+            this.categoriaId = 1L;
+        }else{
+            this.categoriaId = dadosCadastroVideo.categoriaId();
+        }
     }
 
     public void atualizarDados(DadosAtualizadosVideo dadosAtualizadosVideo) {
@@ -42,6 +50,9 @@ public class VideoModel {
         }
         if(dadosAtualizadosVideo.url() != null){
             this.url = dadosAtualizadosVideo.url();
+        }
+        if(dadosAtualizadosVideo.categoriaId() != null){
+            this.categoriaId = dadosAtualizadosVideo.categoriaId();
         }
     }
 }
