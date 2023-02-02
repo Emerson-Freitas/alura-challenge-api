@@ -6,8 +6,8 @@ import jakarta.validation.constraints.NotNull;
 public record DadosCadastroCategoria(
         @NotNull
         Long id,
-        @NotBlank
+        @NotBlank(message = "O título é obrigatório")
         String titulo,
-        @NotBlank
+        @NotBlank(message = "A cor é obrigatória")
         String cor) {
 }

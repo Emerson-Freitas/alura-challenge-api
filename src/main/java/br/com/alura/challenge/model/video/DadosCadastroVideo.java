@@ -6,11 +6,11 @@ import jakarta.validation.constraints.NotNull;
 public record DadosCadastroVideo(
         @NotNull
         Long id,
-        @NotBlank
+        @NotBlank(message = "O título é obrigatório")
         String titulo,
-        @NotBlank
+        @NotBlank(message = "A descrição é obrigatória")
         String descricao,
-        @NotBlank
+        @NotBlank(message = "A url é obrigatória")
         String url,
         Long categoriaId) {
 }

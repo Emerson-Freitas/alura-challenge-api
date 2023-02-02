@@ -1,9 +1,7 @@
 package br.com.alura.challenge.controller;
 
-import br.com.alura.challenge.model.categoria.CategoriaModel;
-import br.com.alura.challenge.model.categoria.DadosAtualizadosCategoria;
-import br.com.alura.challenge.model.categoria.DadosCadastroCategoria;
-import br.com.alura.challenge.model.categoria.DadosCategoria;
+import br.com.alura.challenge.model.categoria.*;
+import br.com.alura.challenge.model.video.DadosVideo;
 import br.com.alura.challenge.repository.CategoriaRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +30,18 @@ public class CategoriaController {
         var categoria = categoriaRepository.getReferenceById(id);
         return ResponseEntity.ok(new DadosCategoria(categoria));
     }
+
+    @GetMapping("/{id}/videos")
+    public ResponseEntity consultarVideosPorCategoria(@PathVariable(name = "id") Long id){
+        var videos = categoriaRepository.findByVideosPorCategoria(id);
+        return ResponseEntity.ok(videos.stream().map(DadosVideo::new).collect(Collectors.toList()));
+    }
+
+   @GetMapping("/videos/")
+   public ResponseEntity consultarCategoriaPeloTitulo(@RequestParam("search") String search){
+        var categoria = categoriaRepository.findByTitulo(search);
+        return ResponseEntity.ok(new CategoriaVideos(categoria));
+   }
 
     @PostMapping
     @Transactional
