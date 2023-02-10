@@ -7,6 +7,7 @@ import br.com.alura.challenge.model.video.VideoModel;
 import br.com.alura.challenge.repository.VideoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -34,14 +35,15 @@ public class VideoController {
     }
 
     @GetMapping("/free")
-    public ResponseEntity listaDeVideosFree(){
-        var videos = videoRepository.findFirst10ByOrderByIdAsc();
-        return ResponseEntity.ok(videos.stream().map(DadosVideo::new).collect(Collectors.toList()));
+    public ResponseEntity<Page<DadosVideo>> listaDeVideosFree(@PageableDefault(size = 5, sort = {"id"}) Pageable page){
+        var videos = videoRepository.findFirst10ByOrderByIdAsc(page).map(DadosVideo::new);
+        return ResponseEntity.ok(videos);
     }
+
     @GetMapping
-    public ResponseEntity<List<DadosVideo>> listaDeVideos(@PageableDefault(size = 5, sort = {"id"})Pageable page){
-        var videos = videoRepository.findAll(page);
-        return ResponseEntity.ok(videos.stream().map(DadosVideo::new).collect(Collectors.toList()));
+    public ResponseEntity<Page<DadosVideo>> listaDeVideos(@PageableDefault(size = 5, sort = {"id"})Pageable page){
+        var videos = videoRepository.findAll(page).map(DadosVideo::new);
+        return ResponseEntity.ok(videos);
     }
 
     @GetMapping("/{id}")

@@ -5,6 +5,7 @@ import br.com.alura.challenge.model.video.DadosVideo;
 import br.com.alura.challenge.repository.CategoriaRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +24,9 @@ public class CategoriaController {
     private CategoriaRepository categoriaRepository;
 
     @GetMapping
-    public ResponseEntity<List<DadosCategoria>> listaDeCategorias(@PageableDefault(size = 5, sort = {"id"}) Pageable page){
-        var categorias = categoriaRepository.findAll(page);
-        return ResponseEntity.ok(categorias.stream().map(DadosCategoria::new).collect(Collectors.toList()));
+    public ResponseEntity<Page<DadosCategoria>> listaDeCategorias(@PageableDefault(size = 5, sort = {"id"}) Pageable page){
+        var categorias = categoriaRepository.findAll(page).map(DadosCategoria::new);
+        return ResponseEntity.ok(categorias);
     }
 
     @GetMapping("/{id}")
@@ -35,15 +36,15 @@ public class CategoriaController {
     }
 
     @GetMapping("/{id}/videos")
-    public ResponseEntity consultarVideosPorCategoria(@PathVariable(name = "id") Long id){
-        var videos = categoriaRepository.findByVideosPorCategoria(id);
-        return ResponseEntity.ok(videos.stream().map(DadosVideo::new).collect(Collectors.toList()));
+    public ResponseEntity<Page<DadosVideo>> consultarVideosPorCategoria(@PathVariable(name = "id") Long id, @PageableDefault(size = 5, sort = {"id"}) Pageable page){
+        var videos = categoriaRepository.findByVideosPorCategoria(id, page).map(DadosVideo::new);
+        return ResponseEntity.ok(videos);
     }
 
     @GetMapping("/videos/")
-    public ResponseEntity consultarVideosPeloTituloDaCategoria(@RequestParam("search") String search){
-        var categoria = categoriaRepository.findByTitulo(search);
-        return ResponseEntity.ok(new CategoriaVideos(categoria));
+    public ResponseEntity consultarVideosTituloCategoria(@RequestParam(name = "titulo") String titulo, @PageableDefault(size = 5, sort = {"id"}) Pageable pageable){
+        var videos = categoriaRepository.findVideosByTituloCategoria(titulo, pageable).map(DadosVideo::new);
+        return ResponseEntity.ok(videos);
     }
 
     @PostMapping
