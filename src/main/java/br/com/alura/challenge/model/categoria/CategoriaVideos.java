@@ -6,6 +6,7 @@ import java.util.List;
 
 public record CategoriaVideos(List<VideoModel> videos) {
 
+
     public CategoriaVideos(CategoriaModel categoria){
         this(categoria.getVideos());
     }

@@ -5,11 +5,14 @@ import br.com.alura.challenge.model.video.DadosVideo;
 import br.com.alura.challenge.repository.CategoriaRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -20,8 +23,8 @@ public class CategoriaController {
     private CategoriaRepository categoriaRepository;
 
     @GetMapping
-    public ResponseEntity listaDeCategorias(){
-        var categorias = categoriaRepository.findAll();
+    public ResponseEntity<List<DadosCategoria>> listaDeCategorias(@PageableDefault(size = 5, sort = {"id"}) Pageable page){
+        var categorias = categoriaRepository.findAll(page);
         return ResponseEntity.ok(categorias.stream().map(DadosCategoria::new).collect(Collectors.toList()));
     }
 
@@ -37,11 +40,11 @@ public class CategoriaController {
         return ResponseEntity.ok(videos.stream().map(DadosVideo::new).collect(Collectors.toList()));
     }
 
-   @GetMapping("/videos/")
-   public ResponseEntity consultarCategoriaPeloTitulo(@RequestParam("search") String search){
+    @GetMapping("/videos/")
+    public ResponseEntity consultarVideosPeloTituloDaCategoria(@RequestParam("search") String search){
         var categoria = categoriaRepository.findByTitulo(search);
         return ResponseEntity.ok(new CategoriaVideos(categoria));
-   }
+    }
 
     @PostMapping
     @Transactional
