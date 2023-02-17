@@ -1,10 +1,7 @@
 package br.com.alura.challenge.model.usuario;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Setter
 public class UsuarioModel implements UserDetails {
 
     @Id
@@ -30,7 +28,10 @@ public class UsuarioModel implements UserDetails {
 
     private String senha;
 
-
+    public UsuarioModel(DadosCadastroUsuario dados) {
+        this.login = dados.login();
+        this.senha = dados.senha();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -66,4 +67,6 @@ public class UsuarioModel implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }

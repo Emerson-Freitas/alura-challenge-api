@@ -28,6 +28,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/videos/free").permitAll()
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                .requestMatchers(HttpMethod.POST, "/usuario").permitAll()
                 .anyRequest().authenticated()
                 .and().cors().and()
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
