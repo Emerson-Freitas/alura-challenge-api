@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class UsuarioService {
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public String criptografaSenha(String senha){
-        return passwordEncoder.encode(senha);
+        return bCryptPasswordEncoder.encode(senha);
     }
 }
