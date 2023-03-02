@@ -1,8 +1,12 @@
 package br.com.alura.challenge.controller;
 
-import br.com.alura.challenge.model.categoria.*;
+import br.com.alura.challenge.model.categoria.CategoriaModel;
+import br.com.alura.challenge.model.categoria.DadosAtualizadosCategoria;
+import br.com.alura.challenge.model.categoria.DadosCadastroCategoria;
+import br.com.alura.challenge.model.categoria.DadosCategoria;
 import br.com.alura.challenge.model.video.DadosVideo;
 import br.com.alura.challenge.repository.CategoriaRepository;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,11 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @RestController
 @RequestMapping("/categorias")
+@SecurityRequirement(name = "bearer-key")
 public class CategoriaController {
 
     @Autowired
