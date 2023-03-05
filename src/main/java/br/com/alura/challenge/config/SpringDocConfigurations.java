@@ -16,7 +16,6 @@ public class SpringDocConfigurations {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .addServersItem(new Server().url("https://alura-challenge-api-production.up.railway.app"))
                 .components(new Components()
                         .addSecuritySchemes("bearer-key",
                                 new SecurityScheme()
