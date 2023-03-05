@@ -31,4 +31,5 @@ public class SpringDocConfigurations {
                                 .name("Apache 2.0")
                                 .url("http://alura-challenge/api/licenca")));
     }
+
 }
