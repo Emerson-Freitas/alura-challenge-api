@@ -27,10 +27,7 @@ public class SpringDocConfigurations {
                         .description("API Rest, contendo as funcionalidades de CRUD de vídeos e de categorias, além de muitos outros end-points")
                         .contact(new Contact()
                                 .name("Emerson Freitas de Sousa")
-                                .email("emerson_freitas@outlook.com.br"))
-                        .license(new License()
-                                .name("Apache 2.0")
-                                .url("http://alura-challenge/api/licenca")));
+                                .email("emerson_freitas@outlook.com.br")));
     }
 
 }
