@@ -19,7 +19,7 @@ public class SpringDocConfigurations {
                 .components(new Components()
                         .addSecuritySchemes("bearer-key",
                                 new SecurityScheme()
-                                        .type(SecurityScheme.Type.HTTP)
+                                        .type(SecurityScheme.Type.OAUTH2)
                                         .scheme("bearer")
                                         .bearerFormat("JWT")))
                 .info(new Info()
