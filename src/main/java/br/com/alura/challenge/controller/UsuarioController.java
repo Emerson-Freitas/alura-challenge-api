@@ -13,7 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/usuario")
-@CrossOrigin(origins = {"http://localhost:8080", "https://alura-challenge-api-production.up.railway.app/*"})
+@CrossOrigin(origins = {"http://localhost:8080", "https://alura-challenge-api-production.up.railway.app/*", "http://alura-challenge-api-production.up.railway.app/*"})
 public class UsuarioController {
 
     @Autowired
@@ -26,7 +26,8 @@ public class UsuarioController {
     @Transactional
     public ResponseEntity cadastrarUsuario(@RequestBody @Valid DadosCadastroUsuario dadosCadastroUsuario, UriComponentsBuilder builder){
         var usuario = new UsuarioModel(dadosCadastroUsuario);
-        usuario.setSenha(usuarioService.criptografaSenha(usuario.getSenha()));
+        var senhaCriptografada = usuarioService.criptografaSenha(usuario.getSenha());
+        usuario.setSenha(senhaCriptografada);
         usuarioRepository.save(usuario);
         var uri = builder.buildAndExpand("/usuario/{id}").expand(usuario.getId()).toUri();
 

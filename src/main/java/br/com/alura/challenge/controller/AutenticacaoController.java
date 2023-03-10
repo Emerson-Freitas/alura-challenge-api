@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/login")
-@CrossOrigin(origins = {"http://localhost:8080", "https://alura-challenge-api-production.up.railway.app/*"})
+@CrossOrigin(origins = {"http://localhost:8080", "https://alura-challenge-api-production.up.railway.app/*", "http://alura-challenge-api-production.up.railway.app/*"})
 public class AutenticacaoController {
 
     @Autowired
