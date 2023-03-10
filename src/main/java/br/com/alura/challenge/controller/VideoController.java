@@ -18,7 +18,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/videos")
-@CrossOrigin("/swagger-ui/*")
 public class VideoController {
 
     @Autowired
