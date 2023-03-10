@@ -20,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 @RequestMapping("/categorias")
 @SecurityRequirement(name = "bearer-key")
+@CrossOrigin("/swagger-ui/*")
 public class CategoriaController {
 
     @Autowired
