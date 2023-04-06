@@ -38,7 +38,8 @@ cd <nome-da-pasta-do-projeto>
 ```
 
 ## Documentação da API (lembre-se de clonar e rodar antes o projeto)
-- Acesse a URL da imagem abaixo (http://localhost:8080/swagger-ui/index.html#)
+- Acesse a URL da imagem abaixo (http://localhost:8080/swagger-ui/index.html#):
+ 
 ![Web 1](https://github.com/Emerson-Freitas/alura-challenge-api/blob/master/src/main/resources/imagens-projeto/documentacao.png)
 
 ## Como realizar as requisições HTTP (Pelo swagger-ui)
