@@ -38,6 +38,7 @@ cd <nome-da-pasta-do-projeto>
 ```
 
 ## Documentação da API (lembre-se de clonar e rodar antes o projeto)
+- Acesse a URL da imagem abaixo (http://localhost:8080/swagger-ui/index.html#)
 ![Web 1](https://github.com/Emerson-Freitas/alura-challenge-api/blob/master/src/main/resources/imagens-projeto/documentacao.png)
 
 ## Como realizar as requisições HTTP (Pelo swagger-ui)
@@ -62,7 +63,7 @@ Todas os end-points necessitam de um Token JWT para que as requisições sejam r
  
 ![Web 4](https://github.com/Emerson-Freitas/alura-challenge-api/blob/master/src/main/resources/imagens-projeto/authorize.png)
 
-- Agora insira o token que a API te gerou (Observação: O token tem duração de duas horas, após isso ele será expirado. Para gerar outro token basta o login novamente);
+- Agora insira o token que a API te gerou (Observação: O token tem duração de duas horas, após isso ele será expirado. Para gerar outro token basta realizar o login novamente);
 - Após ter inserido o valor do token, clique em "Authorize" e depois em "Close";
 - Pronto, agora todos os end-points da API estão liberados
 
@@ -72,6 +73,6 @@ Emerson Freitas de Sousa
 
 # Contatos
 
-e-mail: emerson_freitas@outlook.com.br
-linkedin: https://www.linkedin.com/in/emerson-freitas-5b6468240/
+- e-mail: emerson_freitas@outlook.com.br
+- linkedin: https://www.linkedin.com/in/emerson-freitas-5b6468240/
 
